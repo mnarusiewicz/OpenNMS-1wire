@@ -1,0 +1,12 @@
+<package name="HTTP-OWFS">
+    <filter>IPADDR != '0.0.0.0'</filter>
+    <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <service name="HTTP1wire" interval="300000" user-defined="false" status="on" >
+        <parameter key="port" value="2121"/>
+        <parameter key="retry" value="2"/>
+        <parameter key="collection" value="HTTP1wire"/>
+        <parameter key="timeout" value="2000"/>
+      </service>
+</package>
+
+    <collector service="HTTP1wire" class-name="org.opennms.netmgt.collectd.HttpCollector"/>

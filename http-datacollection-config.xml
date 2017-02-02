@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<http-datacollection-config  
+    xmlns:http-dc="http://xmlns.opennms.org/xsd/config/http-datacollection" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:schemaLocation="http://xmlns.opennms.org/xsd/config/http-datacollection http://www.opennms.org/xsd/config/http-datacollection-config.xsd" 
+    rrdRepository="/var/lib/opennms/rrd/snmp/" >
+
+    <http-collection name="HTTP1wire">
+        <rrd step="300">
+          <rra>RRA:AVERAGE:0.5:1:2016</rra>
+          <rra>RRA:AVERAGE:0.5:12:1488</rra>
+          <rra>RRA:AVERAGE:0.5:288:366</rra>
+          <rra>RRA:MAX:0.5:288:366</rra>
+          <rra>RRA:MIN:0.5:288:366</rra>
+        </rrd>
+        <uris>
+          <uri name="HTTP-1wire">
+              <url path="/bus.0/28.22619B080000/fasttemp"
+                 matches="(?s).*?fasttemp.*?<TD>([0-9\.]+).*"
+                 response-range="-100-399">
+              </url>
+            <attributes>
+              <attrib alias="OWTemperature" match-group="1" type="gauge32"/>
+            </attributes>
+          </uri>
+        </uris>
+    </http-collection>
+</http-datacollection-config>
